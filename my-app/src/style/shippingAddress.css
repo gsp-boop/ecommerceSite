@@ -1,0 +1,11 @@
+.my-form{ 
+    text-align: center;
+}
+
+.shipping-form {
+    width: 70%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    margin: 0 auto
+}

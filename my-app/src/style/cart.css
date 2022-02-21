@@ -1,0 +1,44 @@
+table {
+    width: 100%;
+    max-width: 960px;
+}
+
+.cart-container {
+    max-width: 1120px;
+    margin-bottom: 50px
+}
+
+.my-rows {
+    height: 120px;
+    border-bottom: 2px solid black
+}
+
+.cart-item {
+    width: 25%;
+}
+
+.cart-img {
+    width: 80px;
+    height: 80px;
+}
+
+.add {
+    margin-right: 10px;
+}
+
+.subtract {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.cart-total {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 20px;
+}
+.positioning {
+    width: 33%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
