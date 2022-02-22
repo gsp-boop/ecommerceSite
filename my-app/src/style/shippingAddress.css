@@ -3,9 +3,14 @@
 }
 
 .shipping-form {
-    width: 70%;
+    width: 50%;
+    min-width: 200px;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
     margin: 0 auto
+}
+
+.my-label {
+    height: 65px;
 }

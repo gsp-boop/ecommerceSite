@@ -142,6 +142,7 @@ class Shipping extends React.Component {
       <div>
         {toCardInfo? <CardInfo toHome={toHome} subTotal={subTotal} cart={cart} /> :
         <div className="form-control my-form">
+          <p className="h2 text-center mt-3 mb-3">Shipping Adress</p>
           <form className="shipping-form">
             {
               shippingInputs.length ? 
@@ -167,7 +168,7 @@ class Shipping extends React.Component {
                 />
               )) : null
             }
-            <input onClick={this.handleSubmit} type='submit' value='submit' />
+            <input className="btn btn-secondary" onClick={this.handleSubmit} type='submit' value='submit' />
           </form>
         </div>
         }

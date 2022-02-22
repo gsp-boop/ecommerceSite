@@ -56,6 +56,6 @@ export const CARD = [
 export const CARDICON = {
     VISA: VISA_ICON,
     MASTERCARD: MASTER_ICON,
-    AMEX_ICON: AMEX_ICON,
+    AMEX: AMEX_ICON,
     DISCOVER: DISCOVER_ICON,
 }

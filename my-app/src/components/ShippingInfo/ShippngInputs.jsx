@@ -1,14 +1,14 @@
 import React from "react";
 
 const ShippingInputs = ({errorM, error, isStates, ...props}) => (
-  <label>
+  <label className="my-label">
     {!isStates ? 
     <div>
-        <input className {...props} />
-        {errorM && <p>{errorM}</p>}
+        <input className="form-control" {...props} />
+        {errorM && <small className="text-danger">{errorM}</small>}
     </div>
      : 
-      <select>
+      <select className="form-control form-control-sm">
         <option value="AL">Alabama</option>
         <option value="AK">Alaska</option>
         <option value="AZ">Arizona</option>

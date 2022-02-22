@@ -3,6 +3,7 @@ import { cardExpValidation, cardNumberValidation, cvvValidation, textValidation 
 import { OTHERCARDS } from "../../jsFolder/Cardicon";
 import OrderComplete from "../OrderComplete";
 import InputBase from "./InputBase";
+import '../../style/card.css'
 
 const INIT_CARD = {
     card: '',
@@ -139,53 +140,57 @@ class CardInfo extends React.Component {
             { label: 'Exp Date (MM/YY)', name: 'exp', type: 'text', error: 'expError'},
             { label: 'Security Code', name: 'cvv', type: 'text', error: 'cvvError'},
         ]
-        return(
-            
-            <div>  
+        return (
+            <div className="container my-card-form">  
             {  !orderComplete ?
               <div className="card-form-container">
                 <h1>Credit Card info</h1>
-                <form onSubmit={this.handleAddCard}>
-                    {inputData.length ? inputData.map((item) => (
-                        <InputBase
-                        placeholder={item.label}
-                        type={item.type}
-                        value={cardData && cardData[item.name]}
-                        onChange={this.handleInputData}
-                        autoComplete="off"
-                        maxLength={maxLength}
-                        name={item.name}
-                        onBlur={this.handleBlur}
-                        error={error}
-                        isCard={item.name === 'card'}
-                        cardType={cardType}   
-                        errorM={
-                            (error
-                            && error[item.error]
-                            && error[item.error].length > 1)
-                            ? error[item.error]
-                            : null
-                        }  
-                    />
-                    )) : null }
-                    <div className="submit-btn">
-                      <InputBase 
-                        type="submit" 
-                        value="Submit Payment"
-                         />
-                    </div>
-                </form>
-                {
-                    cart.map((item) => (
-                        <div>
-                            <span>{item.name}  </span>
-                            <span>${item.price} x {item.count}</span>
+                <div className="flex-group">
+                    <form className="form-group" onSubmit={this.handleAddCard}>
+                        {inputData.length ? inputData.map((item) => (
+                            <InputBase
+                            placeholder={item.label}
+                            type={item.type}
+                            value={cardData && cardData[item.name]}
+                            onChange={this.handleInputData}
+                            autoComplete="off"
+                            maxLength={maxLength}
+                            name={item.name}
+                            onBlur={this.handleBlur}
+                            error={error}
+                            isCard={item.name === 'card'}
+                            cardType={cardType}   
+                            errorM={
+                                (error
+                                && error[item.error]
+                                && error[item.error].length > 1)
+                                ? error[item.error]
+                                : null
+                            }  
+                        />
+                        )) : null }
+                        <div className="submit-btn ">
+                        <InputBase 
+                            type="submit" 
+                            value="Submit Payment"
+                            />
                         </div>
-                    ))
-                }
-                <span>Subtotal: ${subTotal}</span>
+                    </form>
+                    <div className="summary">
+                        {
+                            cart.map((item) => (
+                                <div>
+                                    <img className="cart-img" src={item.img} alt="" />
+                                    <span>{item.name}  </span>
+                                    <span>${item.price} x {item.count}</span>
+                                </div>
+                            ))
+                        }
+                        <span>Subtotal: ${subTotal}</span>
+                    </div>
+
+                </div>
             </div> : <OrderComplete toHome={toHome}/>
-            
         }
         </div>
         )

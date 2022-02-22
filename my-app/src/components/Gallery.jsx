@@ -108,7 +108,7 @@ class Gallery extends React.Component {
                 </button>
               </li>
               <li className="nav-item">
-                <button className="btn btn-primary">Sign Out</button>
+                <button onClick={this.props.toHome} className="btn btn-primary">Sign Out</button>
               </li>
               <li className="nav-item cart-count">
                 <span>{cartcount}</span>
