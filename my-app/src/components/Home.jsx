@@ -14,6 +14,7 @@ class Home extends React.Component {
     pass: "",
   };
 
+
   inputCaptcher = (e) => {
     const val = e.target.value;
     const type = e.target.type;
@@ -49,9 +50,9 @@ class Home extends React.Component {
       <div>
     { !toCreateAcct && signIn ?
       
-      <div className="center-content container-xxl">
+      <div className="center-content container-sm">
         <h1 className="text-center">Code Commerce</h1>
-        <form className="container-sm">
+        <form style={{width: '500px', margin: '0 auto', paddingTop: "100px"}}>
           <div className="row mb-3">
             <label className="col-sm-2 col-form-labell" id="email" name="email">Email</label>
           <div className="col-sm-10">

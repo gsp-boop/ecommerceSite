@@ -1,13 +1,49 @@
 import React from "react";
 import "../style/gallery.css";
-import { galleryCode } from "../jsFolder/Home";
 import Cart from "./Cart";
+import { PRODUCTS_URL, HEADERS } from "../jsFolder/Data";
 class Gallery extends React.Component {
   state = {
+    gallery: [],
+    loading: false,
+    error: false,
     cart: [],
     showCart: false,
     showNav: false,
   };
+
+  async componentDidMount() {
+    this.setState({loading: true })
+    try{
+      const response = await fetch(PRODUCTS_URL, { headers: HEADERS });
+      if(response.ok){
+        const json = await response.json();
+        const gallery = json.data
+                  .filter((item) => item.price.raw)
+                  .map(item => ({
+                    id: item.id,
+                    name: item.name,
+                    desc: item.description,
+                    price: item.price.formatted_with_symbol,
+                    img: item.assets[0].url,
+                    raw_price: item.price.raw,
+                    count: item.inventory.available + 1
+                  }));
+                this.setState({ 
+                  gallery,
+                  loading: false 
+                })
+      }
+      else {
+        this.setState({
+          loading: false,
+          error: true
+        })
+      }
+    } catch(err) {
+      console.error("There was an error", err)
+    }
+  }
 
   addToCart = (item) => {
     const findingRepeat = (arr) => {
@@ -83,7 +119,7 @@ class Gallery extends React.Component {
   };
 
   render() {
-    const { cart, showCart, showNav } = this.state;
+    const { cart, showCart, gallery, loading, error } = this.state;
     const { toHome } = this.props;
     const cartcount = cart.reduce((prev, curr) => {
       return prev + curr.count;
@@ -118,8 +154,10 @@ class Gallery extends React.Component {
         </nav>
 
         <div className={!showCart ? "gallery-container mt-5 mb-5 container" : "hide"}>
-          {galleryCode.map((item, i) => (
-            <div className="gallery-item" key={i + `${item.name}`}>
+
+          { !loading ? 
+          gallery.map((item, i) => (
+            <div className="gallery-item" key={item.id}>
               <div className="">
                 <div className="img-container">
                   <img src={item.img} alt="" />
@@ -132,7 +170,7 @@ class Gallery extends React.Component {
                   className="btn btn-success btn-md my-btn"
                   onClick={() =>
                     this.addToCart({
-                      price: item.price,
+                      price: item.raw_price,
                       name: item.name,
                       count: item.count,
                       img: item.img,
@@ -143,7 +181,9 @@ class Gallery extends React.Component {
                 </button>
               </div>
             </div>
-          ))}
+          )):
+          <p>Loading...</p>
+          }
         </div>
         {showCart ? (
           <Cart
@@ -154,6 +194,7 @@ class Gallery extends React.Component {
             removeItem={this.removeFromCart}
           />
         ) : null}
+        {error && <p>Error Loading</p>}
       </div>
     );
   }
