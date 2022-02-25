@@ -1,7 +1,7 @@
 import React from "react";
-import Gallery from "../components/Gallery"
 import { nameRgx, passwordCheck } from "../jsFolder/AccountValidation";
 import "../style/createAcct.css"
+import PRODUCT_PAGE from "./PRODUCT_PAGE";
 class CreateAcct extends React.Component {
   constructor() {
     super();
@@ -133,7 +133,7 @@ class CreateAcct extends React.Component {
           </div>
         </div> :
 
-        <Gallery/>
+        <PRODUCT_PAGE/>
         
         }
       </div>

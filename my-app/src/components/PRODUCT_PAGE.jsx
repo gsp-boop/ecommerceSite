@@ -2,7 +2,10 @@ import React from "react";
 import "../style/gallery.css";
 import Cart from "./Cart";
 import { PRODUCTS_URL, HEADERS } from "../jsFolder/Data";
-class Gallery extends React.Component {
+import CODING_PRODUCTS from "../jsFolder/CommerceAPI";
+
+const GALLERY_API = new CODING_PRODUCTS;
+class PRODUCT_PAGE extends React.Component {
   state = {
     gallery: [],
     loading: false,
@@ -14,35 +17,52 @@ class Gallery extends React.Component {
 
   async componentDidMount() {
     this.setState({loading: true })
-    try{
-      const response = await fetch(PRODUCTS_URL, { headers: HEADERS });
-      if(response.ok){
-        const json = await response.json();
-        const gallery = json.data
-                  .filter((item) => item.price.raw)
-                  .map(item => ({
-                    id: item.id,
-                    name: item.name,
-                    desc: item.description,
-                    price: item.price.formatted_with_symbol,
-                    img: item.assets[0].url,
-                    raw_price: item.price.raw,
-                    count: item.inventory.available + 1
-                  }));
-                this.setState({ 
-                  gallery,
-                  loading: false 
-                })
-      }
-      else {
+
+    GALLERY_API.fetchProducts().then((res) => {
+      console.log(res.resp.ok)
+      if (res && res.resp.ok){
         this.setState({
+          gallery: res.gallery,
           loading: false,
-          error: true
-        })
+        });
+      } else {
+        this.setState({ loading: false })
       }
-    } catch(err) {
-      console.error("There was an error", err)
-    }
+    }, (err) => {
+      console.log(err);
+      this.setState({
+        loading: false,
+        error: true,
+      })
+     })
+
+
+    // try{
+    //   const response = await fetch(PRODUCTS_URL, { headers: HEADERS });
+    //   if(response.ok){
+    //     const json = await response.json();
+    //     const gallery = json.data
+    //               .filter((item) => item.price.raw)
+    //               .map(item => ({
+    //                 id: item.id,
+    //                 name: item.name,
+    //                 desc: item.description,
+    //                 price: item.price.formatted_with_symbol,
+    //                 img: item.assets[0].url,
+    //                 raw_price: item.price.raw,
+    //                 count: item.inventory.available + 1
+    //               }));
+
+    //   }
+    //   else {
+    //     this.setState({
+    //       loading: false,
+    //       error: true
+    //     })
+    //   }
+    // } catch(err) {
+    //   console.error("There was an error", err)
+    // }
   }
 
   addToCart = (item) => {
@@ -199,4 +219,4 @@ class Gallery extends React.Component {
     );
   }
 }
-export default Gallery;
+export default PRODUCT_PAGE;

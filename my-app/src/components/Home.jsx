@@ -1,7 +1,7 @@
 import React from "react";
 import '../style/Home.css'
 import CreateAcct from "./CreateAcct";
-import Gallery from "./Gallery";
+import PRODUCT_PAGE from "./PRODUCT_PAGE";
 
 class Home extends React.Component {
   state = {
@@ -78,7 +78,7 @@ class Home extends React.Component {
         null 
     }
         {toCreateAcct ? <CreateAcct toHome={this.toHome}/> : null}
-        {toGallery ? <Gallery toHome={this.toHome} /> : null}
+        {toGallery ? <PRODUCT_PAGE toHome={this.toHome} /> : null}
       </div>
     );
   }
