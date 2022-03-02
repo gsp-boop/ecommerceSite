@@ -35,34 +35,6 @@ class PRODUCT_PAGE extends React.Component {
         error: true,
       })
      })
-
-
-    // try{
-    //   const response = await fetch(PRODUCTS_URL, { headers: HEADERS });
-    //   if(response.ok){
-    //     const json = await response.json();
-    //     const gallery = json.data
-    //               .filter((item) => item.price.raw)
-    //               .map(item => ({
-    //                 id: item.id,
-    //                 name: item.name,
-    //                 desc: item.description,
-    //                 price: item.price.formatted_with_symbol,
-    //                 img: item.assets[0].url,
-    //                 raw_price: item.price.raw,
-    //                 count: item.inventory.available + 1
-    //               }));
-
-    //   }
-    //   else {
-    //     this.setState({
-    //       loading: false,
-    //       error: true
-    //     })
-    //   }
-    // } catch(err) {
-    //   console.error("There was an error", err)
-    // }
   }
 
   addToCart = (item) => {

@@ -1,5 +1,6 @@
 import React from "react";
 import { nameRgx, passwordCheck } from "../jsFolder/AccountValidation";
+import { CREACTEACCT } from "../jsFolder/CreateAcct";
 import "../style/createAcct.css"
 import PRODUCT_PAGE from "./PRODUCT_PAGE";
 class CreateAcct extends React.Component {
