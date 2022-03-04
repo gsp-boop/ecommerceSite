@@ -1,8 +1,8 @@
 import React from "react";
 import "../style/gallery.css";
 import Cart from "./Cart";
-import { PRODUCTS_URL, HEADERS } from "../jsFolder/Data";
-import CODING_PRODUCTS from "../jsFolder/CommerceAPI";
+import { PRODUCTS_URL, HEADERS } from "../utils/data";
+import CODING_PRODUCTS from "../utils/CommerceAPI";
 
 const GALLERY_API = new CODING_PRODUCTS;
 class PRODUCT_PAGE extends React.Component {

@@ -1,5 +1,5 @@
 import React from "react";
-import { CARD, CARDICON } from "../../jsFolder/Cardicon";
+import { CARD, CARDICON } from "../../utils/Cardicon";
 import '../../style/card.css'
 const InputBase = ({ errorM, error, cardType, isCard, ...props }) => (
   <label className="card-label">
