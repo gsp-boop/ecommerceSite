@@ -1,6 +1,6 @@
 import React from "react";
 import '../style/Home.css'
-import CreateAcct from "./CreateAcct";
+import CreateAcct from "../components/createAcctComps/CreateAcct";
 import PRODUCT_PAGE from "./PRODUCT_PAGE";
 
 class Home extends React.Component {

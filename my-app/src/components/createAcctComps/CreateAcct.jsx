@@ -1,8 +1,9 @@
 import React from "react";
-import { nameRgx, passwordCheck } from "../jsFolder/AccountValidation";
-import { CREACTEACCT } from "../jsFolder/CreateAcct";
-import "../style/createAcct.css"
-import PRODUCT_PAGE from "./PRODUCT_PAGE";
+import { nameRgx, passwordCheck } from "../../utils/validation";
+import { CREACTEACCT } from "../../utils/createform";
+import "../../style/createAcct.css"
+import PRODUCT_PAGE from "../PRODUCT_PAGE";
+import InputBaseAcct from "./InputBaseAcct";
 class CreateAcct extends React.Component {
   constructor() {
     super();
@@ -14,7 +15,7 @@ class CreateAcct extends React.Component {
       passmatch: false,
       passMsg: "",
       submit: true,
-      fname: "",
+      firstName: "",
       lastName: "",
       zip: "",
       nextPage: false,
@@ -22,11 +23,11 @@ class CreateAcct extends React.Component {
   }
 
   handleBtn = (e) => {
-    const { submit, passCheck, inputFlag, fname, lastName, zip } = this.state;
+    const { passCheck, inputFlag, firstName, lastName} = this.state;
     e.target.value.length > 4 &&
     !passCheck &&
     !inputFlag &&
-    (fname.length > 1) & (lastName.length > 1)
+    (firstName.length > 1) & (lastName.length > 1)
       ? this.setState({ submit: false })
       : this.setState({ submit: true });
   };
@@ -37,9 +38,9 @@ class CreateAcct extends React.Component {
     const name = target.name;
     this.setState({ [name]: value });
 
-    if (name === "fname" || name === "lastName") {
+    if (name === "firstName" || name === "lastName") {
       nameRgx(value)
-        ? this.setState({ inputFlag: false, fname: value })
+        ? this.setState({ inputFlag: false, firstName: value })
         : this.setState({ inputFlag: true });
     } else if (name === "password") {
       passwordCheck(value)
@@ -72,16 +73,31 @@ class CreateAcct extends React.Component {
       this.state;
     return (
       <div>
+
          { !nextPage ?
         <div className={nextPage ? "hide" : "createAcct"}>
           <h1>Welcome To Code Commerce!</h1>
           <p>Please Create Account</p>
           <div className="formContainer">
             <form>
-              <div className="inputContainer">
-                <label name="fname">First Name</label>
+
+              {
+                CREACTEACCT.map((item, i) => (
+                  <div key={i}>
+                    <InputBaseAcct
+                      name={item.name}
+                      label={item.label}
+                      type={item.type}
+                    
+                    />
+                  </div>
+                ))
+              }
+              
+              {/* <div className="inputContainer">
+                <label name="firstName">First Name</label>
                 <input
-                  name="fname"
+                  name="firstName"
                   onChange={this.handleChange}
                   className={inputFlag ? "inputFlag" : null}
                   type="text"
@@ -126,7 +142,7 @@ class CreateAcct extends React.Component {
                   maxLength="5"
                   type="text"
                 />
-              </div>
+              </div> */}
             </form>
             <button onClick={this.nextPage} disabled={submit}>
               Create Account

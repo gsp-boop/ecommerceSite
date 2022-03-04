@@ -1,5 +1,5 @@
 import React from "react";
-import { addressCheck, nameCheck, phoneNumberCheck, textValidation, zipCheck } from "../../jsFolder/AccountValidation";
+import { addressCheck, nameCheck, phoneNumberCheck, textValidation, zipCheck } from "../../utils/validation";
 import CardInfo from "../CreditCardComps/CardInfo";
 import ShippingInputs from "./ShippngInputs";
 import '../../style/shippingAddress.css'

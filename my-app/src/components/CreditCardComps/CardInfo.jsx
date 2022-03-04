@@ -1,6 +1,6 @@
 import React from "react";
-import { cardExpValidation, cardNumberValidation, cvvValidation, textValidation } from "../../jsFolder/AccountValidation";
-import { OTHERCARDS } from "../../jsFolder/Cardicon";
+import { cardExpValidation, cardNumberValidation, cvvValidation, textValidation } from "../../utils/validation";
+import { OTHERCARDS } from "../../utils/Cardicon";
 import OrderComplete from "../OrderComplete";
 import InputBase from "./InputBase";
 import '../../style/card.css'

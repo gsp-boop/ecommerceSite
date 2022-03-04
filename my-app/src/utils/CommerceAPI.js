@@ -1,4 +1,4 @@
-import { PRODUCTS_URL, HEADERS } from "../jsFolder/Data";
+import { PRODUCTS_URL, HEADERS } from "./data";
 
 class CODING_PRODUCTS {
     async fetchProducts(){
